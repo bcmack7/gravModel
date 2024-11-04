@@ -1,0 +1,46 @@
+# IMPORTANT: Do not change anything left of the : on each line. Only change the associated values.
+# The code looks for the exact strings left of the :, so changing any will break it.
+
+
+Main Save Directory: './NorthLRV/'  # main project folder to save all data and figures. Code will create subfolders in this directory. Must have / at the end
+
+Data File: 'LRV_NoUTEP_tcg_parsedElev.csv'  # Gravity data file name. Must be within Main Save Directory. Must have 4 columns: Easting (m), Northing (m), Elevation (m), and Bouguer Anomaly (mGal)
+
+Profile Coordinates File: 'ProfileData/ProfileCoordinates.csv'  # Profile coordinates file name. Must be within Main Save Directory. Must have 5 columns: Profile Number, Start X (m), Start Y (m), End X (m), End Y (m)
+
+Profile Number: 2 # profile number from Profile Coordinates File to plot
+
+Profile Search Radius: 1000  # distance away from profile line to include gravity survey points
+
+
+Density Contrast: -450  # density contrast in kg/m^3
+
+Grid Spacing: 500  # spacing of interpolation grid in meters
+
+Maximum Depth: 3500  # maximum basin depth in m.
+
+Station Depth: 0  # depth of gravity staion. 0 is at the surface. Unlikely to use anything other than 0.
+
+Prism Top: 0.1  # depth of top of prism in m. Should not be 0 or equal to Station Depth.
+
+Prism Length: 5000  # long axis of prism for modeling. Should be long enough to make it "infinite."
+
+
+Bad Point Indices: [5,10,17]  # list of indices for points to be deleted. Indices correspond to the indices in the dfProfile dataFrame just before running the removal in the code.
+# They can be determined by counting the number of points from the left of the plot.
+# Remember, indexing starts from 0, not 1.
+# Use this if there are specific data points you want to remove from the profiles
+# without removing them from your data file. I suggest running the code without 
+# this first and then looking at the plots to decide. If you do not want to remove 
+# any points, comment out the line above this text.
+
+Detrend Point Indices: [1,16]  # indices of points that the detrend line will set to 0 mGal. Indices correspond to the indices in the dfProfile dataFrame just before running the interpolation in the code.
+# They can be determined by counting the number of points from the left of the plot.
+# Remember, indexing starts from 0, not 1.
+# I recommend running the code once without detrending so you can find which points
+# you want to use in the plotted gravity profile and then running it again. The 
+# points should be at the bedrock contact on the edge of your basin and are ideally
+# the highest gravity values on either end. You can use one point on each side to
+# do a linear detrend between them or you can use a single point to shift all points
+# by the same amount. Comment out the line above this text if you do not wish to 
+# detrend. The code will not run the basin depth model without detrending.

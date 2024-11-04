@@ -1,0 +1,37 @@
+# IMPORTANT: Do not change anything left of the : on each line. Only change the associated values.
+# The code looks for the exact strings left of the :, so changing any will break it.
+
+
+Main Save Directory: './NorthLRV/'  # main project folder to save all data and figures. Code will create subfolders in this directory. Must have / at the end.
+Data File: 'LRV_NoUTEP_tcg_parsedElev.csv'  # Gravity data file name. Must be within Main Save Directory. Must have 4 columns: Easting (m), Northing (m), Elevation (m), and Bouguer Anomaly (mGal)
+Profile Coordinates File: 'ProfileData/ProfileCoordinates.csv'  # Profile coordinates CSV file name. Must be within Main Save Directory. Must have 5 columns: Profile Number, Start X (m), Start Y (m), End X (m), End Y (m). Used for plotting profile lines on maps. Comment out if not needed.
+
+
+
+Density Contrast: -450  # density contrast in kg/m^3
+Grid Spacing: 2500  # spacing of interpolation grid in meters
+Maximum Depth: 3500  # maximum basin depth in meters
+Masking Radius: 2500  # search radius around grav points to determine what is plotted on maps (masking). Use 0 for no masking.
+
+Use Block Median: True  # determines whether to use block median before interpolation of grav data. True = use block median. False = no block median. Helps smooth interpolation.
+Use MultiProcessing: False  # determines whether to use multiprocessing for the 3D model. MP has issues on Windows and may not work correctly. If the progress bar freezes, it is not working and you must use the other method (False)
+
+Station Depth: 0  # depth of gravity staion. 0 is at the surface. Unlikely to use anything other than 0.
+Prism Top: 0.1  # depth of top of prism in m. Should not be 0.
+
+Interpolation Method: 'cubic'  # method for gravity interpolation. Can use 'nearest', 'linear', or 'cubic'.
+
+South Boundary: 4894000  # northing of southern boundary cutoff for modeling
+North Boundary: 4946500  # northing of northern boundary cutoff for modeling
+West Boundary: 234000  # easting of western boundary cutoff for modeling
+East Boundary: 272000  # easting of eastern boundary cutoff for modeling
+
+Profile Numbers: [2,4] # list of profile numbers to plot on observed gravity map. Numbers correspond to those in Profile Coordinates File. Comment out if not needed.
+
+
+
+
+
+
+
+
