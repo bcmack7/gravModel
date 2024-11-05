@@ -7,19 +7,19 @@ Desc: Modeling basin depth from gravity data using a single density contrast.
     Using multiprocessing will speed up the model but has issues on Windows.
 Author: Bradford Mack
 Date: 12 Dec 23
-Last modified: 2 Oct 24
+Last modified: 5 Nov 24
 '''
 
+from datetime import datetime as dt
+import gravModelLib as gm
+from itertools import repeat
+import multiprocessing as mp
+import numpy as np
+import os
 import pandas as pd
 import pygmt as pg
-from datetime import datetime as dt
-import numpy as np
 from scipy.interpolate import griddata
-import multiprocessing as mp
-import os
-from itertools import repeat
 from tqdm import tqdm
-import gravModelLib as gm
 import xarray as xr
 import yaml
 
