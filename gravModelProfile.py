@@ -8,7 +8,7 @@ Desc: Modeling basin gravity profiles from gravity data using a single density
     near a profile line given its endpoints and projects points onto the line.
 Author: Bradford Mack
 Date: 20 Mar 24
-Last modified: 1 Oct 24
+Last modified: 5 Nov 24
 '''
 
 from datetime import datetime as dt
@@ -52,48 +52,6 @@ detrendPts = params['Detrend Point Indices'] # indices of points that the detren
 del(params,yml)
 
 
-#%% Inputs
-'''
-profileNum = 2 # number to select which profile to run given coordinates below
-
-profileRad = 1000 # distance away from profile line to include gravity survey points
-
-gridSpace = 500 # spacing of profile interpolation grid
-
-rho = -450 # density contrast in kg/m^3
-z0 = 0 # depth of gravity staion. 0 is at the surface
-maxDepth = 3500 # maximum basin depth in m
-prismTop = 0.1 # depth of top of prism in m
-prismLength = 5000 # long axis of prism for modeling. Should be long enough to make it "infinite"
-
-mainSaveDir = './NorthLRV2/' # main project folder to save all data and figures. Code will create subfolders in this directory
-
-readFile = './NorthLRV/LRV_NoUTEP_tcg_parsedElev.csv' # Import grav data. Must have 4 columns: Easting (m), Northing (m), Elevation (m), and Bouguer Anomaly (mGal)
-
-profileCoordFile = 'ProfileData/ProfileCoordinates.csv' # csv with profile endpoint coordinates. Must have 5 columns: Profile Number, Start X (m), Start Y (m), End X (m), End Y (m)
-# Ensure profile endpoints go just beyond the furthest gravity stations you want
-# to use. They will be eliminated if on the edge or outside of the search area.
-
-#profileNum = 4 # profile number from profile coordinate csv to plot
-
-
-badPoints = [5,10,17] # list of indices for points to be deleted.
-# Use this if there are specific data points you want to remove from the profiles
-# without removing them from your data file. I suggest running the code without 
-# this first and then looking at the plots to decide. If you do not want to remove 
-# any points, comment out the line above this text.
-
-
-detrendPts = [1,16] # indices of points that the detrend line will set to 0 mGal.
-# I recommend running the code once without detrending so you can find which points
-# you want to use in the plotted gravity profile and then running it again. The 
-# points should be at the bedrock contact on the edge of your basin and are ideally
-# the highest gravity values on either end. You can use one point on each side to
-# do a linear detrend between them or you can use a single point to shift all points
-# by the same amount. Comment out the line above this text if you do not wish to 
-# detrend. The code will not run the basin depth model without detrending.
-'''
-
 #%% Error handling
 
 assert gridSpace > 0, 'Grid spacing must be > 0'
@@ -112,10 +70,6 @@ if 'detrendPts' in globals():
     
 
 #%% 2D profile data parsing
-
-#dfProfile = pd.read_csv(readFile,header=0) # load gravity data
-#dfProfileCoord = pd.read_csv(mainSaveDir+profileCoordFile,header=0) # Import profile coordinates. 
-
 
 proSaveDir = mainSaveDir+'Figures/Profiles/' # directory to save profile data and figures in
 figSaveDir = proSaveDir+'profile'+str(profileNum)+'/' # directory to save profile figures and data in
